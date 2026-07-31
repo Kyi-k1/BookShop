@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+	<section th:replace ="~{fragments/hero.html :: hero}"></section>
+	
+    <div class="container py-5">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/books}" class="text-decoration-none text-indigo">Books</a></li>
+                <li class="breadcrumb-item active" th:text="${book.category.categoryName}">Category</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5">
+            <div class="col-md-5">
+                <div class="p-4 bg-light rounded-3 shadow-sm border text-center">
+                    <img th:src="@{'/images/books/'+${book.imageUrl}}" 
+                         alt="Book Cover" 
+                         class="img-fluid rounded shadow" 
+                         style="max-height: 500px; object-fit: contain;"/>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="ps-lg-4">
+                    <span class="badge bg-info text-dark mb-2" th:text="${book.category.categoryName}">Category</span>
+                    <h1 class="display-5 fw-bold mb-1" th:text="${book.title}">Book Title</h1>
+                    <p class="fs-5 text-muted mb-4">
+                        By <span class="fw-bold text-dark" th:text="${book.author.firstName + ' ' + book.author.lastName}">Author Name</span>
+                    </p>
+
+                    <h3 class="fw-bold text-primary mb-3" th:text="${'$' + book.price}">$0.00</h3>
+
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small">Description</h6>
+                        <p class="lead" th:text="${book.description}">Detailed book description goes here.</p>
+                    </div>
+
+                    <div class="row mb-4 bg-light p-3 rounded-2 g-2">
+                        <div class="col-6">
+                            <span class="d-block text-muted small">Published Year</span>
+                            <span class="fw-semibold" th:text="${book.yearPuplished}">2024</span>
+                        </div>
+                        <div class="col-6">
+                            <span class="d-block text-muted small">Availability</span>
+                            <span th:classappend="${book.stocks > 0} ? 'text-success' : 'text-danger'" 
+                                  class="fw-semibold" 
+                                  th:text="${book.stocks > 0 ? book.stocks + ' in stock' : 'Out of stock'}">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start pt-3">
+                        
+                    
+                            <a th:href="@{'/book/add-cart?id='+ ${book.id}}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow" th:disabled="${book.stocks <= 0}">
+                           
+                                <i class="bi bi-cart-plus me-2"></i> Add to Cart
+                            </a>
+                        </form>
+                        <a th:href="@{/book/list-books}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow" th:disabled="${book.stocks <= 0}">
+                                <i class="bi bi-cart-plus me-2"></i> More Books
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .text-indigo { color: #312e81; }
+        .btn-primary { background-color: #4f46e5; border-color: #4f46e5; }
+        .btn-primary:hover { background-color: #3730a3; border-color: #3730a3; }
+        .breadcrumb-item a { color: #4f46e5; }
+    </style>
+</main>
+</body>
+</html>

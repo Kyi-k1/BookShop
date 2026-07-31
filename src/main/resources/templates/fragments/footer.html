@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org">
+
+<body>
+<section th:fragment="footer">
+    <style>
+        :root {
+            --indigo-900: #312e81;
+            --indigo-950: #1e1b4b; /* Even deeper indigo for the bottom bar */
+            --indigo-400: #818cf8;
+            --indigo-50: #f8fafc;
+        }
+
+        .footer-custom {
+            background-color: var(--indigo-900);
+            color: var(--indigo-50);
+            padding-top: 5rem;
+            border-top: 4px solid var(--indigo-400);
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-link {
+            color: var(--indigo-50);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: 0.3s;
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--indigo-400);
+            color: var(--indigo-900);
+        }
+
+        .footer-bottom {
+            background-color: var(--indigo-950);
+            padding: 1.5rem 0;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--indigo-400);
+            color: white;
+            box-shadow: none;
+        }
+    </style>
+
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="footer-brand mb-3 d-block" th:href="@{/}">
+                        <span>📚 Indigo<span class="text-info">Books</span></span>
+                    </a>
+                    <p class="small" style="opacity: 0.7; max-width: 300px;">
+                        Curating the world's finest literature since 2024. Your gateway to imagination, knowledge, and endless stories.
+                    </p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">𝕏</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-uppercase fw-bold mb-4 text-info">Explore</h6>
+                    <ul class="list-unstyled">
+                        <li><a th:href="@{/books}" class="footer-link">All Books</a></li>
+                        <li><a th:href="@{/genres}" class="footer-link">Genres</a></li>
+                        <li><a th:href="@{/authors}" class="footer-link">Authors</a></li>
+                        <li><a th:href="@{/deals}" class="footer-link">Special Offers</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-uppercase fw-bold mb-4 text-info">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">Help Center</a></li>
+                        <li><a href="#" class="footer-link">Shipping Policy</a></li>
+                        <li><a href="#" class="footer-link">Returns</a></li>
+                        <li><a href="#" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-uppercase fw-bold mb-4 text-info">Join the Book Club</h6>
+                    <p class="small mb-3">Get weekly book recommendations and exclusive discounts.</p>
+                    <form class="input-group mb-3">
+                        <input type="email" class="form-control newsletter-input" placeholder="Your email address" aria-label="Email">
+                        <button class="btn btn-info px-4" type="button">Join</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; 2026 IndigoBooks. All rights reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <span class="me-3">Privacy Policy</span>
+                        <span>Terms of Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+
+</body>
+</html>

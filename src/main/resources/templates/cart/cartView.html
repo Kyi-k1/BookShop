@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<main role="main">
+		<div class="bg-dark py-4 mb-5"
+			style="background: linear-gradient(135deg, #312e81 0%, #3730a3 100%) !important;">
+			<div class="container text-white">
+				<h2 class="fw-bold mb-0">Your Shopping Cart</h2>
+				<p class="opacity-75 small">Review your selections before
+					checkout</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row g-4">
+				<div class="col-lg-8">
+					<div class="card border-0 shadow-sm">
+						<div class="table-responsive">
+							<table class="table align-middle mb-0">
+								<thead class="bg-light">
+									<tr class="text-uppercase small fw-bold text-muted">
+										<th class="ps-4 py-3">Book</th>
+										<th class="py-3">SubTotal</th>
+										<th class="py-3 text-end pe-4">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="item : ${cartItems}">
+										<td class="ps-4 py-4">
+											<div class="d-flex align-items-center">
+												<div class="p-2 bg-light rounded me-3">
+													<img th:src="@{'/images/books/'+${item.imageUrl}}"
+														class="img-fluid rounded"
+														style="width: 60px; height: 80px; object-fit: cover;"
+														alt="Book">
+												</div>
+												<div>
+													<h6 class="mb-0 fw-bold" th:text="${item.title}">Book
+														Title</h6>
+													<small class="text-muted d-block"
+														th:text="${item.authorName}"></small> <span
+														class="badge bg-indigo-soft text-indigo mt-1"
+														th:text="${item.categoryName}">Category</span>
+												</div>
+											</div>
+										</td>
+
+										<td><span class="fw-bold text-indigo"
+											th:text="${'$' + item.price}">$0.00</span> <small
+											class="text-muted d-block smaller"><span
+												th:text="${item.price}"></span> 
+										</small></td>
+
+										<td class="text-end pe-4"><a
+											th:href="@{'/cart/remove?id='+${item.id}}"
+											class="btn btn-sm btn-outline-danger border-0"> <i
+												class="bi bi-trash"></i> Remove
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="my-4 d-flex justify-content-around">
+						<a th:href="@{/book/list-books}"
+							class="btn btn-link text-indigo text-decoration-none p-0"> <i
+							class="fa-solid fa-arrow-right"
+							style="color: rgb(142, 102, 102);"></i> Continue Shopping
+						</a> 
+						<a th:href="@{/cart/clear-cart}"
+							class="btn btn-link text-indigo text-decoration-none p-0"> <i
+							class="fa-solid fa-arrow-right"
+							style="color: rgb(142, 102, 102);"></i> Clear Cart
+						</a>
+						<a th:href="@{/books}"
+							class="btn btn-link text-indigo text-decoration-none p-0"> <i
+							class="fa-solid fa-arrow-right"
+							style="color: rgb(142, 102, 102);"></i> Proceed to CheckOut
+						</a>
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="card border-0 shadow-sm p-4 sticky-top"
+						style="top: 100px;">
+						<h5 class="fw-bold mb-4">Order Summary</h5>
+						<div class="d-flex justify-content-between mb-2">
+							<span class="text-muted">SubTotal</span> <span
+								class="fw-semibold" th:text="${'$' + totalPrice}"></span>
+						</div>
+						<div class="d-flex justify-content-between mb-2">
+							<span class="text-muted">Shopping</span> <span
+								class="text-success">Free</span>
+						</div>
+						<hr>
+						<div class="d-flex justify-content-between mb-4">
+							<span class="h5 fw-bold">Total</span> <span
+								class="h5 fw-bold text-indigo" th:text="${'$' + totalPrice}"></span>
+						</div>
+
+						<button
+							class="btn btn-indigo btn-lg w-100 rounded-pill py-3 shadow-sm mb-3">
+							Proceed to Checkout</button>
+
+						<div class="text-center">
+							<img
+								src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+								height="20" class="me-2 opacity-50" alt="Paypal"> <img
+								src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+								height="15" class="opacity-50" alt="Visa">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<style>
+.text-indigo {
+	color: #4f46e5 !important;
+}
+
+.bg-indigo-soft {
+	background-color: #eef2ff;
+	color: #4f46e5;
+	font-size: 0.75rem;
+	font-weight: 600;
+	padding: 2px 8px;
+	border-radius: 4px;
+}
+
+.btn-indigo {
+	background-color: #4f46e5;
+	border-color: #4f46e5;
+	color: white;
+	transition: all 0.3s;
+}
+
+.btn-indigo:hover {
+	background-color: #3730a3;
+	color: white;
+	transform: translateY(-2px);
+}
+
+.smaller {
+	font-size: 0.8rem;
+}
+</style>
+	</main>
+</body>
+</html>
